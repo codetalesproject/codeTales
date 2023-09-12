@@ -21,9 +21,9 @@ from .import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('index.html/', views.index, name='index'),
-    path('about.html/', views.about ,name='about'),
-    path('contact.html/', views.contact ,name='contact'),
-    path('price.html/', views.price ,name='price'),
-    path('service.html/', views.service ,name='service'),
+    path('index/', views.index, name='index'),
+    path('about/', views.about ,name='about'),
+    path('contact/', views.contact ,name='contact'),
+    path('price/', views.price ,name='price'),
+    path('service/', views.service ,name='service'),
 ]
