@@ -27,15 +27,15 @@
                     {% csrf_token %}
                     <fieldset class="forms_fieldset">
                       <div class="forms_field">
-                        <input type="email" placeholder="Email" class="forms_field-input" required autofocus />
+                        <input name="email" type="email" placeholder="Email" class="forms_field-input" required autofocus />
                       </div>
                       <div class="forms_field">
-                        <input type="password" placeholder="Password" class="forms_field-input" required />
+                        <input name="password" type="password" placeholder="Password" class="forms_field-input" required />
                       </div>
                     </fieldset>
                     <div class="forms_buttons">
                       <button type="button" class="forms_buttons-forgot">Forgot password?</button>
-                      <input type="submit" value="Log In" class="forms_buttons-action">
+                      <input name="loin" type="submit" value="Log In" class="forms_buttons-action">
                     </div>
                   </form>
                 </div>
@@ -55,7 +55,7 @@
                       </div>
                     </fieldset>
                     <div class="forms_buttons">
-                      <input type="submit" value="Sign up" class="forms_buttons-action">
+                      <input name="sup" type="submit" value="Sign up" class="forms_buttons-action">
                     </div>
                   </form>
                 </div>
