@@ -27,7 +27,7 @@ def reglog(request):
             if logobj:
                 return render(request,'index.html')
             else:
-                error_message = "Invalid credentials. Please try again."
+                error_message = "Invalid credentials. Please try again!"
                 return render(request, 'reglog.html', {'error_message': error_message})
     else:
         return render(request,'reglog.html')
