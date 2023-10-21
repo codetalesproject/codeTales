@@ -26,4 +26,5 @@ urlpatterns = [
     path('price/', views.price ,name='price'),
     path('service/', views.service ,name='service'),
     path('reglog/',views.reglog,name='reglog'),
+    path('profile/',views.profile,name='profile'),
 ]

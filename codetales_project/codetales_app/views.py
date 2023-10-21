@@ -1,11 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Registration
+from .models import Registration, Feedback
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    if(request.method=="POST"):
+        name=request.POST.get("name")
+        email=request.POST.get("email")
+        phone=request.POST.get("phone")
+        message=request.POST.get("message")
+        Feedback(Name=name,Email=email,Phone=phone,Message=message).save()
+        return render(request, 'index.html')
+    else:
+        return render(request, 'index.html')
 def about(request):
     return render(request, 'about.html')
+def profile(request):
+    return render(request, 'profile.html')
 def contact(request):
     return render(request, 'contact.html')
 def price(request):
