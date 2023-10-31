@@ -50,9 +50,6 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="/about">About</a>
               </li>
@@ -62,17 +59,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/reglog">Sign Up | Sign In</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact Us</a>
-              </li>
             </ul>
-            <div class="quote_btn-container">
-              <form class="form-inline">
-                <button class="btn   nav_search-btn" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
-            </div>
           </div>
         </nav>
       </div>
@@ -88,17 +75,50 @@
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h1>
-                      Fast & Secure <br>
-                      Web Hosting
+                      codeTales <br>
+                      Where Coding Meets Storytelling
                     </h1>
                     <p>
-                      Anything embarrassing hidden in the middle of text. All the Lorem Ipsuanything embarrassing hidden in the middle of text. All the Lorem Ipsumm </p>
+                      Welcome to codeTales, your portal to the magical fusion of coding and storytelling, where learning becomes a thrilling adventure. Immerse yourself in a world where every line of code weaves a captivating tale, unlocking the mysteries of programming. Join us today and embark on your extraordinary coding journey filled with discovery, challenge, and creativity.</p>
                     <div class="btn-box">
                       <a href="" class="btn-1">
                         Read More
                       </a>
                       <a href="" class="btn-2">
-                        Contact Us
+                        Start Learning
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class=" col-lg-10 mx-auto">
+                      <div class="img-box">
+                        <img src="{% static 'images/index-slider-1.png' %}" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      The Python Chronicles<br>
+                      Begin an Epic Python Journey
+                    </h1>
+                    <p>
+                      Set forth on an extraordinary journey with 'The Python Chronicles' at codeTales, an adventure that transforms Python into a captivating narrative. Explore Python in a storytelling format, where code becomes the essence of enchanting tales. Join us and let Python be your guide to crafting your own digital stories. Start your journey with 'The Python Chronicles' at codeTales!</p>
+                    <div class="btn-box">
+                      <a href="" class="btn-1">
+                        Read More
+                      </a>
+                      <a href="" class="btn-2">
+                        Start Learning
                       </a>
                     </div>
                   </div>
@@ -121,50 +141,17 @@
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h1>
-                      Fast & Secure <br>
-                      Web Hosting
+                      The C Cipher<br>
+                      Crack the Code in C Programming
                     </h1>
                     <p>
-                      Anything embarrassing hidden in the middle of text. All the Lorem Ipsuanything embarrassing hidden in the middle of text. All the Lorem Ipsumm </p>
+                      Step into the world of 'The C Cipher' at codeTales, a thrilling detective adventure in the realm of C programming. In this captivating narrative, you'll decipher clues and uncover coding mysteries. Join us and let 'C' be your guide through the twists and turns of code. Start your journey with 'The C Cipher' at codeTales!</p>
                     <div class="btn-box">
                       <a href="" class="btn-1">
                         Read More
                       </a>
                       <a href="" class="btn-2">
-                        Contact Us
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="row">
-                    <div class=" col-lg-10 mx-auto">
-                      <div class="img-box">
-                        <img src="{% static 'images/slider-img.png' %}" alt="">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="detail-box">
-                    <h1>
-                      Fast & Secure <br>
-                      Web Hosting
-                    </h1>
-                    <p>
-                      Anything embarrassing hidden in the middle of text. All the Lorem Ipsuanything embarrassing hidden in the middle of text. All the Lorem Ipsumm </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1">
-                        Read More
-                      </a>
-                      <a href="" class="btn-2">
-                        Contact Us
+                        Start Learning
                       </a>
                     </div>
                   </div>
@@ -211,7 +198,7 @@
               </h2>
             </div>
             <p>
-              Words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks </p>
+              Welcome to codeTales! We're your gateway to a unique and captivating world where coding and storytelling intertwine. At codeTales, we're passionate about making coding education engaging and enjoyable. Our platform offers interactive coding challenges, enchanting narratives, and a supportive community. Join us to embark on a coding journey like never before.</p>
             <a href="">
               Read More
             </a>
@@ -228,45 +215,6 @@
   </section>
 </div>
   <!-- end about section -->
-
-  <!-- contact section -->
-  <div>
-  <section class="contact_section layout_padding-bottom">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Get In Touch
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-8 col-lg-6 mx-auto">
-          <div class="form_container">
-            <form action="/index/" method="POST">
-              {% csrf_token %}
-              <div>
-                <input type="text" name="name" placeholder="Your Name" />
-              </div>
-              <div>
-                <input type="email" name="email" placeholder="Your Email" />
-              </div>
-              <div>
-                <input type="text" name="phone" placeholder="Your Phone" />
-              </div>
-              <div>
-                <input type="text" name="message" class="message-box" placeholder="Message" />
-              </div>
-              <div class="btn_box ">
-                <input type="submit" value="SEND" name="formsubmit"/>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  </div>
-  <!-- end contact section -->
-
   <!-- info section -->
 <div>
   <section class="info_section layout_padding2">
@@ -305,10 +253,6 @@
               Links
             </h4>
             <div class="info_links">
-              <a class="active" href="/index">
-                <img src="{% static 'images/nav-bullet.png' %}" alt="">
-                Home
-              </a>
               <a class="" href="/about">
                 <img src="{% static 'images/nav-bullet.png' %}" alt="">
                 About
@@ -320,10 +264,6 @@
               <a class="" href="/reglog">
                 <img src="{% static 'images/nav-bullet.png' %}" alt="">
                 Sign Up | Sign In
-              </a>
-              <a class="" href="/contact">
-                <img src="{% static 'images/nav-bullet.png' %}" alt="">
-                Contact Us
               </a>
             </div>
           </div>
@@ -349,7 +289,7 @@
   <footer class="footer_section">
     <div class="container">
       <p>
-        &copy; <span id="displayYear"></span> codeTales
+        &copy; <span id="displayYear"></span> codeTales - Learning Through Stories
       </p>
     </div>
   </footer>
