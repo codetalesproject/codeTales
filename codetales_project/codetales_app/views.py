@@ -36,6 +36,9 @@ def homepage(request):
 def service(request):
     return render(request, 'service.html')
 
+def bookpage(request):
+    return render(request, 'bookpage.html')
+
 def reglog(request):
     if(request.method=="POST"):
         if 'sup' in request.POST:

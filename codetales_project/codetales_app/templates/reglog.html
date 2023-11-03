@@ -1,10 +1,72 @@
 {% load static %}
+<!DOCTYPE html>
 <html>
-    <head><title>Registration</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/reglog.css' %}">
-    </head>
-    <body>
-        <section class="user">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+ 
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Sign Up</title>
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- font awesome style -->
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/reglog.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/reglog2.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/reglogresponsive.css' %}">
+
+  
+
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="/index">
+            <span>codeTales</span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/homepage">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/service">Courses</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+  </div>
+  <section class="user">
             <div class="user_options-container">
               <div class="user_options-text">
                 <div class="user_options-unregistered">
@@ -65,6 +127,15 @@
               </div>
             </div>
           </section>
-          <script type="text/javascript" src="{% static 'js/reglog.js' %}"></script>
-    </body>
+<!-- footer section -->
+<footer class="footer_section">
+  <div class="container">
+    <p>
+      &copy; <span id="displayYear"></span> codeTales - Learning Through Stories
+    </p>
+  </div>
+</footer>
+<!-- footer section -->
+<script type="text/javascript" src="{% static 'js/reglog.js' %}"></script>
+</body>
 </html>

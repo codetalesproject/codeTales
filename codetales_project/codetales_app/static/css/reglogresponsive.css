@@ -6,12 +6,6 @@
   .hero_area {
     min-height: auto;
   }
-}
-
-  @media (max-width: 992px) {
-    .hero_area2 {
-      min-height: auto;
-    }
 
   #navbarSupportedContent {
     padding: 15px 0 25px 0;

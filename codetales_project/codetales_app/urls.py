@@ -28,4 +28,5 @@ urlpatterns = [
     path('profile/',views.profile,name='profile'),
     path('homepage/',views.homepage,name='homepage'),
     path('listdata/',views.listdata,name='listdata'),
+    path('bookpage/',views.bookpage,name='bookpage'),
 ]
