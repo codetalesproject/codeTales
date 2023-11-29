@@ -1032,6 +1032,10 @@ a:focus {
   text-align: center;
 }
 
+.footdiv{
+  height: 6px;
+}
+
 .footer_section p {
   color: #ffffff;
   padding: 20px 0;

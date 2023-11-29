@@ -70,22 +70,29 @@ def feedback(request):
 def homepage(request):
     return render(request, 'homepage.html')
 
-def service(request):
-    return render(request, 'service.html')
+def course(request):
+    return render(request, 'course.html')
+
+def courses(request):
+    return render(request, 'courses.html')
 
 def bookpage(request):
     return render(request, 'bookpage.html')
 
 def reglog(request):
     if(request.method=="POST"):
-        if 'sup' in request.POST:
+        if 'signupFormSubmit' in request.POST:
             fullname=request.POST.get("fullname")
             email=request.POST.get("email")
             password=request.POST.get("password")
-            
-            Registration(FullName=fullname,Email=email,Password=password).save()
-            return render(request,'index.html')
-        elif 'loin' in request.POST:
+            regobj=Registration.objects.filter(Email=email)
+            if regobj:
+                reg_error_message = "Email already in use! Please try another or login."
+                return render(request, 'reglog.html', {'reg_error_message': reg_error_message})
+            else:
+                Registration(FullName=fullname,Email=email,Password=password).save()
+                return render(request,'index.html')
+        elif 'loginFormSubmit' in request.POST:
             email=request.POST.get("email")
             password=request.POST.get("password")
             logobj=Registration.objects.filter(Email=email,Password=password)
@@ -95,7 +102,7 @@ def reglog(request):
                 request.session['my_session']=sessionEmail
                 return render(request,'homepage.html')
             else:
-                error_message = "Invalid credentials. Please try again!"
+                error_message = "Invalid credentials! Please try again."
                 return render(request, 'reglog.html', {'error_message': error_message})
     else:
         return render(request,'reglog.html')

@@ -97,7 +97,7 @@
                     </fieldset>
                     <div class="forms_buttons">
                       <button type="button" class="forms_buttons-forgot">Forgot password?</button>
-                      <input name="loin" type="submit" value="Log In" class="forms_buttons-action">
+                      <input name="loginFormSubmit" type="submit" value="Log In" class="forms_buttons-action">
                     </div>
                     {% if error_message %}
                       <p class="user_registered-text">{{ error_message }}</p>
@@ -120,8 +120,11 @@
                       </div>
                     </fieldset>
                     <div class="forms_buttons">
-                      <input name="sup" type="submit" value="Sign up" class="forms_buttons-action">
+                      <input name="signupFormSubmit" type="submit" value="Sign up" class="forms_buttons-action">
                     </div>
+                    {% if reg_error_message %}
+                      <p style="text-align: right;margin-top: 5px;" class="user_unregistered-text">{{ reg_error_message }}</p>
+                    {% endif %}
                   </form>
                 </div>
               </div>

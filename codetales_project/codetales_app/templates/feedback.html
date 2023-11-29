@@ -22,14 +22,17 @@
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-
+  <link
+  href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+  rel="stylesheet"
+/>
   <!-- font awesome style -->
   <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/feedback.css' %}" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/feedback-responsive.css' %}" rel="stylesheet" />
 
 </head>
 
@@ -40,7 +43,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="/index">
+          <a class="navbar-brand" href="/homepage">
             <span>codeTales</span>
           </a>
 
@@ -51,10 +54,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ml-auto">
               <li class="nav-item ">
-                <a class="nav-link" href="/homepage">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/homepage">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/service">Services</a>
+                <a class="nav-link" href="/courses">Courses</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
@@ -106,115 +109,14 @@
   </section>
   <!-- end contact section -->
 
-  <!-- info section -->
-
-  <section class="info_section layout_padding2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="info_contact">
-            <h4>
-              Address
-            </h4>
-            <div class="contact_link_box">
-              <a href="">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>
-                  Location
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
-                  Call +01 1234567890
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-                  demo@gmail.com
-                </span>
-              </a>
-            </div>
-          </div>
-          <div class="info_social">
-            <a href="">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-linkedin" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-instagram" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_link_box">
-            <h4>
-              Links
-            </h4>
-            <div class="info_links">
-              <a class="" href="/index">
-                <img src="{% static 'images/nav-bullet.png' %}" alt="">
-                Home
-              </a>
-              <a class="" href="/about">
-                <img src="{% static 'images/nav-bullet.png' %}" alt="">
-                About
-              </a>
-              <a class="" href="/service">
-                <img src="{% static 'images/nav-bullet.png' %}" alt="">
-                Services
-              </a>
-              <a class="" href="/price">
-                <img src="{% static 'images/nav-bullet.png' %}" alt="">
-                Pricing
-              </a>
-              <a class="active" href="/contact">
-                <img src="{% static 'images/nav-bullet.png' %}" alt="">
-                Contact Us
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_detail">
-            <h4>
-              Info
-            </h4>
-            <p>
-              necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful
-            </p>
-          </div>
-        </div>
-        <div class="col-md-3 mb-0">
-          <h4>
-            Subscribe
-          </h4>
-          <form action="#">
-            <input type="text" placeholder="Enter email" />
-            <button type="submit">
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end info section -->
-
-
+  
   <!-- footer section -->
   <footer class="footer_section">
     <div class="container">
+      <div class="footdiv"></div>
       <p>
-        &copy; <span id="displayYear"></span> All Rights Reserved By
-        <a href="https://html.design/">Free Html Templates</a>
+        &copy; <span id="displayYear"></span> codeTales - Learning Through
+        Stories
       </p>
     </div>
   </footer>
