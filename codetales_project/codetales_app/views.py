@@ -13,12 +13,49 @@ def listdata(request):
     return render(request, 'listdata.html',{'sandc':listTrialVariable})
 
 def profile(request):
+    if request.method=="POST":
+        id=request.POST.get('id')
+        name=request.POST.get('FullName')
+        email=request.POST.get('Email')
+        mv=Registration.objects.get(id=id)
+        mv.FullName=name
+        mv.Email=email
+        mv.save()
+        currentUser=request.session['my_session']
+        userInfo=Registration.objects.get(Email=currentUser)
+        userFullName=userInfo.FullName
+        userEmail=userInfo.Email
+        return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
+    else:
+        currentUser=request.session['my_session']
+        userInfo=Registration.objects.get(Email=currentUser)
+        userFullName=userInfo.FullName
+        userEmail=userInfo.Email
+        return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
+
+def profileupdate(request):
     currentUser=request.session['my_session']
     userInfo=Registration.objects.get(Email=currentUser)
+    id=userInfo.id
     userFullName=userInfo.FullName
     userEmail=userInfo.Email
-    return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
+    return render(request, 'profileupdate.html',{'id':id,'userFullName':userFullName,'userEmail':userEmail})
 
+def profileupdateworking(request):
+    if request.method=="POST":
+        id=request.POST.get('id')
+        name=request.POST.get('FullName')
+        email=request.POST.get('Email')
+        mv=Registration.objects.get(id=id)
+        mv.FullName=name
+        mv.Email=email
+        mv.save()
+        currentUser=request.session['my_session']
+        userInfo=Registration.objects.get(Email=currentUser)
+        userFullName=userInfo.FullName
+        userEmail=userInfo.Email
+        return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
+    
 def feedback(request):
     if(request.method=="POST"):
         name=request.POST.get("name")
@@ -45,6 +82,7 @@ def reglog(request):
             fullname=request.POST.get("fullname")
             email=request.POST.get("email")
             password=request.POST.get("password")
+            
             Registration(FullName=fullname,Email=email,Password=password).save()
             return render(request,'index.html')
         elif 'loin' in request.POST:
