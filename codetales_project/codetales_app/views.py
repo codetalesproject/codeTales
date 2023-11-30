@@ -1,9 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Registration, Feedback, ListTrial
+from .models import Registration, Feedback, ListTrial, AdminRegistration
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
+
+def deleteprofile(request,id):
+    delid=Registration.objects.get(id=id)
+    delid.delete()
+    return render(request, 'adminhomepage.html')
+
+def adminprofile(request):
+    userProfile=Registration.objects.all()
+    return render(request, 'adminprofile.html',{'data':userProfile})
+
+def adminhomepage(request):
+    return render(request, 'adminhomepage.html')
+
+def adminfeedback(request):
+    fb=Feedback.objects.all()
+    return render(request, 'adminfeedback.html',{'fb':fb})
 
 def about(request):
     return render(request, 'about.html')
@@ -106,3 +122,31 @@ def reglog(request):
                 return render(request, 'reglog.html', {'error_message': error_message})
     else:
         return render(request,'reglog.html')
+    
+def adminreglog(request):
+    if(request.method=="POST"):
+        if 'signupFormSubmit' in request.POST:
+            fullname=request.POST.get("fullname")
+            email=request.POST.get("email")
+            password=request.POST.get("password")
+            regobj=AdminRegistration.objects.filter(Email=email)
+            if regobj:
+                reg_error_message = "Email already in use! Please try another or login."
+                return render(request, 'adminreglog.html', {'reg_error_message': reg_error_message})
+            else:
+                AdminRegistration(FullName=fullname,Email=email,Password=password).save()
+                return render(request,'index.html')
+        elif 'loginFormSubmit' in request.POST:
+            email=request.POST.get("email")
+            password=request.POST.get("password")
+            logobj=AdminRegistration.objects.filter(Email=email,Password=password)
+            if logobj:
+                loginDetails=AdminRegistration.objects.get(Email=email,Password=password)
+                sessionEmail=loginDetails.Email
+                request.session['my_session']=sessionEmail
+                return render(request,'adminhomepage.html')
+            else:
+                error_message = "Invalid credentials! Please try again."
+                return render(request, 'adminreglog.html', {'error_message': error_message})
+    else:
+        return render(request,'adminreglog.html')

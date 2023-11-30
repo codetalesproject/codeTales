@@ -6,6 +6,11 @@ class Registration(models.Model):
     Email=models.EmailField()
     Password=models.CharField(max_length=20)
 
+class AdminRegistration(models.Model):
+    FullName=models.CharField(max_length=25)
+    Email=models.EmailField()
+    Password=models.CharField(max_length=20)
+
 class Feedback(models.Model):
     Name=models.CharField(max_length=25)
     Email=models.EmailField()
