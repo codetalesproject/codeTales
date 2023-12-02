@@ -24,6 +24,12 @@ def adminfeedback(request):
 def about(request):
     return render(request, 'about.html')
 
+def clevel(request):
+    return render(request, 'clevel.html')
+
+def pylevel(request):
+    return render(request, 'pylevel.html')
+
 def listdata(request):
     listTrialVariable=ListTrial.objects.all()
     return render(request, 'listdata.html',{'sandc':listTrialVariable})
