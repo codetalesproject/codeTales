@@ -124,6 +124,8 @@ body {
 
 .open-book article p {
     text-indent: 2em;
+    white-space: pre-line;
+    line-height: 1.43em;
 }
 
 .open-book .chapter-title + p:first-of-type {

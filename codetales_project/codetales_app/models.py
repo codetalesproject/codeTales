@@ -21,13 +21,13 @@ class CStory(models.Model):
     Level=models.IntegerField()
     Page=models.IntegerField()
     Title=models.CharField(max_length=35,blank=True)
-    Content=models.CharField(max_length=2500)
+    Content=models.TextField()
 
 class PyStory(models.Model):
     Level=models.IntegerField()
     Page=models.IntegerField()
     Title=models.CharField(max_length=35,blank=True)
-    Content=models.CharField(max_length=2500)
+    Content=models.TextField()
 
 class CPuzzle(models.Model):
     puzzleID=models.IntegerField()

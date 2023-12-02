@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Registration, Feedback, ListTrial, AdminRegistration
+from .models import PyChallenge,PyPuzzle,PyStory,CChallenge,CPuzzle,CStory
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -99,7 +100,12 @@ def courses(request):
     return render(request, 'courses.html')
 
 def bookpage(request):
-    return render(request, 'bookpage.html')
+    cr=PyStory.objects.get(Level=1,Page=1)
+    cr2=PyStory.objects.get(Level=1,Page=2)
+    title=cr.Title
+    data=cr.Content
+    data2=cr2.Content
+    return render(request, 'bookpage.html',{'title':title,'data':data,'data2':data2})
 
 def reglog(request):
     if(request.method=="POST"):

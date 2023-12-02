@@ -1,12 +1,11 @@
-<!-- https://codepen.io/erinesullivan/pen/gxdbzp -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bookpage.css' %}">
+    <title>Bookpage</title>
 </head>
 <body>
     <div id="wrapper">
@@ -18,8 +17,10 @@
                     <h6>Erin E. Sullivan</h6>
                 </header>
                 <article>
-                    <h2 class="chapter-title">Waiting on projects</h2>
-                    <p>
+                    <h2 class="chapter-title">{{title}}</h2>
+                    <p>{{data|linebreaksbr}}</p>
+                    <!-- <p>{{data2|linebreaksbr}}</p> -->
+                    <!-- <p>
                         Sublime Text 2 was opened and a new document was created. "I love this time of year," Erin gleefully thought to herself.
                     </p>
                     <p>
@@ -90,7 +91,7 @@
                     </p>
                     <p>
                         Erin smirked, "Well at least I think it's worth a try."
-                    </p>
+                    </p> -->
                 </article>
                 <footer>
                     <ol id="page-numbers">
