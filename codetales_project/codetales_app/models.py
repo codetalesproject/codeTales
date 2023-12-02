@@ -20,35 +20,35 @@ class Feedback(models.Model):
 class CStory(models.Model):
     Level=models.IntegerField()
     Page=models.IntegerField()
-    Title=models.CharField(max_length=35)
-    Content=models.CharField(max_length=1500)
+    Title=models.CharField(max_length=35,blank=True)
+    Content=models.CharField(max_length=2500)
 
 class PyStory(models.Model):
     Level=models.IntegerField()
     Page=models.IntegerField()
-    Title=models.CharField(max_length=35)
-    Content=models.CharField(max_length=1500)
+    Title=models.CharField(max_length=35,blank=True)
+    Content=models.CharField(max_length=2500)
 
 class CPuzzle(models.Model):
     puzzleID=models.IntegerField()
     puzzleTitle=models.CharField(max_length=25)
-    puzzleContent=models.CharField(max_length=500)
-    puzzleInstructions=models.CharField(max_length=500)
-    puzzleConditions=models.CharField(max_length=500)
+    puzzleContent=models.CharField(max_length=1000)
+    puzzleInstructions=models.CharField(max_length=1000)
+    puzzleConditions=models.CharField(max_length=1000)
 
 class PyPuzzle(models.Model):
     puzzleID=models.IntegerField()
     puzzleTitle=models.CharField(max_length=25)
-    puzzleContent=models.CharField(max_length=500)
-    puzzleInstructions=models.CharField(max_length=500)
-    puzzleConditions=models.CharField(max_length=500)
+    puzzleContent=models.CharField(max_length=1000)
+    puzzleInstructions=models.CharField(max_length=1000)
+    puzzleConditions=models.CharField(max_length=1000)
 
 class CChallenge(models.Model):
     challengeID=models.IntegerField()
     challengeTitle=models.CharField(max_length=25)
-    challengeContent=models.CharField(max_length=500)
-    challengeInstructions=models.CharField(max_length=500)
-    challengeConditions=models.CharField(max_length=500)
+    challengeContent=models.CharField(max_length=1000)
+    challengeInstructions=models.CharField(max_length=1000)
+    challengeConditions=models.CharField(max_length=1000)
 
 class PyChallenge(models.Model):
     challengeID=models.IntegerField()
