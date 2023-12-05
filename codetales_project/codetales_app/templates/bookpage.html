@@ -1,25 +1,33 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bookpage.css' %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/bookpage.css' %}"
+    />
     <title>Bookpage</title>
-</head>
-<body>
-    <div id="wrapper">
-        <div id="container">
+  </head>
 
-            <section class="open-book">
-                <header>
-                    <h1>{{story}}</h1>
-                    <h6>codeTales</h6>
-                </header>
-                <article>
-                    <h2 class="chapter-title">{{title}}</h2>
-                    <p>{{data|linebreaksbr}}</p>
-                    <!-- <p>
+  <body style=>
+    <div id="wrapper">
+      <div id="container">
+        <section class="open-book">
+          <header>
+            <h1>{{story}}</h1>
+            <h6>codeTales</h6>
+          </header>
+          <article>
+            {% if title %}
+            <h3 class="chapter-title">{{title}}</h3>
+            <p>{{data|linebreaksbr}}</p>
+            {% else %}
+            <p>{{data|linebreaksbr}}</p>
+            {% endif %}
+            <!-- <p>
                         Sublime Text 2 was opened and a new document was created. "I love this time of year," Erin gleefully thought to herself.
                     </p>
                     <p>
@@ -91,16 +99,23 @@
                     <p>
                         Erin smirked, "Well at least I think it's worth a try."
                     </p> -->
-                </article>
-                <footer>
-                    <ol id="page-numbers">
-                        <li><a href="/bookpage/{{corp}},{{level}},{{prev}}"><button>Previous</button></a>{{p1}}</li>
-                        <li>{{p2}}<a href="/bookpage/{{corp}},{{level}},{{next}}"><button>Next</button></a></li>
-                    </ol>
-                </footer>
-            </section>
-
-        </div>
+          </article>
+          <footer>
+            <ol id="page-numbers">
+              <li>
+                <a href="/bookpage/{{corp}},{{level}},{{prev}}"
+                  ><div class="custom-angle left"></div
+                ></a>&nbsp;{{p1}}
+              </li>
+              <li>
+                {{p2}}&nbsp;<a href="/bookpage/{{corp}},{{level}},{{next}}"
+                  ><div class="custom-angle right"></div
+                ></a>
+              </li>
+            </ol>
+          </footer>
+        </section>
+      </div>
     </div>
-</body>
+  </body>
 </html>
