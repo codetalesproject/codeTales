@@ -99,13 +99,20 @@ def course(request):
 def courses(request):
     return render(request, 'courses.html')
 
-def bookpage(request):
-    cr=PyStory.objects.get(Level=1,Page=1)
-    cr2=PyStory.objects.get(Level=1,Page=2)
+def bookpage(request,corp,level,page):
+    if corp=='c':
+        cr=CStory.objects.get(Level=level,Page=page)
+        storyName='The C Cipher'
+    else:
+        cr=PyStory.objects.get(Level=level,Page=page)
+        storyName='The Python Chronicles'
     title=cr.Title
     data=cr.Content
-    data2=cr2.Content
-    return render(request, 'bookpage.html',{'title':title,'data':data,'data2':data2})
+    prevp=page-1
+    nextp=page+1
+    p1=(page*2)-1
+    p2=page*2
+    return render(request, 'bookpage.html',{'title':title,'data':data,'p1':p1,'p2':p2,'story':storyName,'corp':corp,'level':level,'prev':prevp,'next':nextp})
 
 def reglog(request):
     if(request.method=="POST"):

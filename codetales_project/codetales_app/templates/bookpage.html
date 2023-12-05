@@ -10,16 +10,15 @@
 <body>
     <div id="wrapper">
         <div id="container">
-    
+
             <section class="open-book">
                 <header>
-                    <h1>Book Layout</h1>
-                    <h6>Erin E. Sullivan</h6>
+                    <h1>{{story}}</h1>
+                    <h6>codeTales</h6>
                 </header>
                 <article>
                     <h2 class="chapter-title">{{title}}</h2>
                     <p>{{data|linebreaksbr}}</p>
-                    <!-- <p>{{data2|linebreaksbr}}</p> -->
                     <!-- <p>
                         Sublime Text 2 was opened and a new document was created. "I love this time of year," Erin gleefully thought to herself.
                     </p>
@@ -95,12 +94,12 @@
                 </article>
                 <footer>
                     <ol id="page-numbers">
-                        <li>1</li>
-                        <li>2</li>
+                        <li><a href="/bookpage/{{corp}},{{level}},{{prev}}"><button>Previous</button></a>{{p1}}</li>
+                        <li>{{p2}}<a href="/bookpage/{{corp}},{{level}},{{next}}"><button>Next</button></a></li>
                     </ol>
                 </footer>
             </section>
-    
+
         </div>
     </div>
 </body>
