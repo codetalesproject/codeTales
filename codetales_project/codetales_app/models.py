@@ -56,7 +56,3 @@ class PyChallenge(models.Model):
     challengeContent=models.CharField(max_length=500)
     challengeInstructions=models.CharField(max_length=500)
     challengeConditions=models.CharField(max_length=500)
-
-class ListTrial(models.Model):
-    Story=models.CharField(max_length=300)
-    Content=models.CharField(max_length=300)

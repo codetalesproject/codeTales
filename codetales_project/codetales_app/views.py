@@ -1,10 +1,23 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Registration, Feedback, ListTrial, AdminRegistration
+import smtplib
+from .models import Registration, Feedback, AdminRegistration
 from .models import PyChallenge,PyPuzzle,PyStory,CChallenge,CPuzzle,CStory
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
+
+# def resetlink(request):
+#     if request.method=='POST':
+#         email=request.POST.get('email')
+#         s=smtplib.SMTP('smtp.gmail.com', 587)
+#         s.starttls()
+#         s.login("nefsal003@gmail.com", "htxalvzrrkxupspv")
+#         message="Click on the link below to reset password"
+#     return render(request, 'resetlink.html')
+
+# def resetpassword(request):
+#     return render(request, 'resetpassword.html')
 
 def deleteprofile(request,id):
     delid=Registration.objects.get(id=id)
@@ -31,53 +44,52 @@ def clevel(request):
 def pylevel(request):
     return render(request, 'pylevel.html')
 
-def listdata(request):
-    listTrialVariable=ListTrial.objects.all()
-    return render(request, 'listdata.html',{'sandc':listTrialVariable})
-
 def profile(request):
     if request.method=="POST":
-        id=request.POST.get('id')
-        name=request.POST.get('FullName')
-        email=request.POST.get('Email')
-        mv=Registration.objects.get(id=id)
-        mv.FullName=name
-        mv.Email=email
-        mv.save()
-        currentUser=request.session['my_session']
-        userInfo=Registration.objects.get(Email=currentUser)
-        userFullName=userInfo.FullName
-        userEmail=userInfo.Email
-        return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
+        if 'submitUpdate' in request.POST:
+            id=request.POST.get('id')
+            name=request.POST.get('FullName')
+            email=request.POST.get('Email')
+            updobj=Registration.objects.filter(Email=email)
+            if updobj:
+                error_message = "Email already in use! Can't Update"
+                currentUser=request.session['my_session']
+                userInfo=Registration.objects.get(id=currentUser)
+                id=userInfo.id
+                userFullName=userInfo.FullName
+                userEmail=userInfo.Email
+                return render(request, 'profileupdate.html',{'id':id,'userFullName':userFullName,
+                                                            'userEmail':userEmail,'error_message':error_message})
+            else:
+                mv=Registration.objects.get(id=id)
+                mv.FullName=name
+                mv.Email=email
+                mv.save()
+                currentUser=request.session['my_session']
+                userInfo=Registration.objects.get(id=currentUser)
+                userFullName=userInfo.FullName
+                userEmail=userInfo.Email
+                return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
+        elif 'cancelUpdate' in request.POST:
+            currentUser=request.session['my_session']
+            userInfo=Registration.objects.get(id=currentUser)
+            userFullName=userInfo.FullName
+            userEmail=userInfo.Email
+            return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
     else:
         currentUser=request.session['my_session']
-        userInfo=Registration.objects.get(Email=currentUser)
+        userInfo=Registration.objects.get(id=currentUser)
         userFullName=userInfo.FullName
         userEmail=userInfo.Email
         return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
 
 def profileupdate(request):
     currentUser=request.session['my_session']
-    userInfo=Registration.objects.get(Email=currentUser)
+    userInfo=Registration.objects.get(id=currentUser)
     id=userInfo.id
     userFullName=userInfo.FullName
     userEmail=userInfo.Email
     return render(request, 'profileupdate.html',{'id':id,'userFullName':userFullName,'userEmail':userEmail})
-
-def profileupdateworking(request):
-    if request.method=="POST":
-        id=request.POST.get('id')
-        name=request.POST.get('FullName')
-        email=request.POST.get('Email')
-        mv=Registration.objects.get(id=id)
-        mv.FullName=name
-        mv.Email=email
-        mv.save()
-        currentUser=request.session['my_session']
-        userInfo=Registration.objects.get(Email=currentUser)
-        userFullName=userInfo.FullName
-        userEmail=userInfo.Email
-        return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
     
 def feedback(request):
     if(request.method=="POST"):
@@ -112,7 +124,8 @@ def bookpage(request,corp,level,page):
     nextp=page+1
     p1=(page*2)-1
     p2=page*2
-    return render(request, 'bookpage.html',{'title':title,'data':data,'p1':p1,'p2':p2,'story':storyName,'corp':corp,'level':level,'prev':prevp,'next':nextp})
+    return render(request, 'bookpage.html',{'title':title,'data':data,'p1':p1,'p2':p2,'story':storyName,
+                                            'corp':corp,'level':level,'prev':prevp,'next':nextp})
 
 def reglog(request):
     if(request.method=="POST"):
@@ -122,8 +135,8 @@ def reglog(request):
             password=request.POST.get("password")
             regobj=Registration.objects.filter(Email=email)
             if regobj:
-                reg_error_message = "Email already in use! Please try another or login."
-                return render(request, 'reglog.html', {'reg_error_message': reg_error_message})
+                error_message = "Email already in use! Please try another or login."
+                return render(request, 'reglog.html', {'error_message': error_message})
             else:
                 Registration(FullName=fullname,Email=email,Password=password).save()
                 return render(request,'index.html')
@@ -133,8 +146,8 @@ def reglog(request):
             logobj=Registration.objects.filter(Email=email,Password=password)
             if logobj:
                 loginDetails=Registration.objects.get(Email=email,Password=password)
-                sessionEmail=loginDetails.Email
-                request.session['my_session']=sessionEmail
+                sessionID=loginDetails.id
+                request.session['my_session']=sessionID
                 return render(request,'homepage.html')
             else:
                 error_message = "Invalid credentials! Please try again."
@@ -161,8 +174,8 @@ def adminreglog(request):
             logobj=AdminRegistration.objects.filter(Email=email,Password=password)
             if logobj:
                 loginDetails=AdminRegistration.objects.get(Email=email,Password=password)
-                sessionEmail=loginDetails.Email
-                request.session['my_session']=sessionEmail
+                sessionID=loginDetails.id
+                request.session['my_session']=sessionID
                 return render(request,'adminhomepage.html')
             else:
                 error_message = "Invalid credentials! Please try again."
