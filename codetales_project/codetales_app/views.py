@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import smtplib
 from .models import Registration, Feedback, AdminRegistration
@@ -41,8 +41,8 @@ def about(request):
 def clevel(request):
     return render(request, 'clevel.html')
 
-def pylevel(request):
-    return render(request, 'pylevel.html')
+def plevel(request):
+    return render(request, 'plevel.html')
 
 def profile(request):
     if request.method=="POST":
@@ -113,11 +113,19 @@ def courses(request):
 
 def bookpage(request,corp,level,page):
     if corp=='c':
-        cr=CStory.objects.get(Level=level,Page=page)
-        storyName='The C Cipher'
-    else:
-        cr=PyStory.objects.get(Level=level,Page=page)
-        storyName='The Python Chronicles'
+        try:
+            cr=CStory.objects.get(Level=level,Page=page)
+            storyName='The C Cipher'
+        except CStory.DoesNotExist:
+            redirectpage="/"+corp+"level"
+            return redirect(redirectpage)
+    elif corp=='p':
+        try:
+            cr=PyStory.objects.get(Level=level,Page=page)
+            storyName='The Python Chronicles'
+        except PyStory.DoesNotExist:
+            redirectpage="/"+corp+"level"
+            return redirect(redirectpage)
     title=cr.Title
     data=cr.Content
     prevp=page-1

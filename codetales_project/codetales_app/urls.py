@@ -36,5 +36,5 @@ urlpatterns = [
     path('homepage/',views.homepage,name='homepage'),
     path('bookpage/<str:corp>,<int:level>,<int:page>',views.bookpage,name='bookpage'),
     path('clevel/',views.clevel,name='clevel'),
-    path('pylevel/',views.pylevel,name='pylevel'),
+    path('plevel/',views.plevel,name='pylevel'),
 ]

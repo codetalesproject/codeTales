@@ -13,6 +13,33 @@ body {
     margin: 0;
 }
 
+.vertical-navbar {
+    background-color: rgba(139, 69, 19, 0.8); /* Brown color like a bookmark */
+    width: 100px;
+    height: 150px;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border-radius: 0 10px 10px 0; /* Adjust the rounded corners to create a bookmark shape */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.navbar-link {
+    padding: 15px;
+    color: white;
+    text-decoration:none;
+    display: block;
+    transition: background-color 0.5s;
+    text-align: center; /* Center-align the text horizontally */
+}
+
+.navbar-link:hover {
+    background-color: rgba(160, 82, 45, 0.8); /* Darker brown color on hover */
+}
+
 #wrapper {
     margin-left: auto;
     margin-right: auto;
@@ -24,8 +51,6 @@ body {
     padding: 1em;
     width: 100%;
 }
-
-
 
 /*** OPEN BOOK ***/
 .open-book {
