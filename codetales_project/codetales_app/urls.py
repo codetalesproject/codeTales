@@ -26,7 +26,6 @@ urlpatterns = [
     path('course/', views.course ,name='course'),
     path('courses/', views.courses ,name='courses'),
     path('reglog/',views.reglog,name='reglog'),
-    path('adminreglog/',views.adminreglog,name='adminreglog'),
     path('profile/',views.profile,name='profile'),
     path('adminprofile/',views.adminprofile,name='adminprofile'),
     path('adminfeedback/',views.adminfeedback,name='adminfeedback'),

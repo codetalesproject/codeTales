@@ -50,7 +50,13 @@ def profile(request):
             id=request.POST.get('id')
             name=request.POST.get('FullName')
             email=request.POST.get('Email')
-            updobj=Registration.objects.filter(Email=email)
+            currentUserID=request.session['my_session']
+            currentUserInfo=Registration.objects.get(id=currentUserID)
+            currentUserEmail=currentUserInfo.Email
+            flag = 0 if email == currentUserEmail else 1
+            updobj=False
+            if flag:
+                updobj=Registration.objects.filter(Email=email)
             if updobj:
                 error_message = "Email already in use! Can't Update"
                 currentUser=request.session['my_session']
@@ -65,17 +71,9 @@ def profile(request):
                 mv.FullName=name
                 mv.Email=email
                 mv.save()
-                currentUser=request.session['my_session']
-                userInfo=Registration.objects.get(id=currentUser)
-                userFullName=userInfo.FullName
-                userEmail=userInfo.Email
-                return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
+                return redirect('profile')
         elif 'cancelUpdate' in request.POST:
-            currentUser=request.session['my_session']
-            userInfo=Registration.objects.get(id=currentUser)
-            userFullName=userInfo.FullName
-            userEmail=userInfo.Email
-            return render(request, 'profile.html',{'userFullName':userFullName,'userEmail':userEmail})
+            return redirect('profile')
     else:
         currentUser=request.session['my_session']
         userInfo=Registration.objects.get(id=currentUser)
@@ -90,7 +88,7 @@ def profileupdate(request):
     userFullName=userInfo.FullName
     userEmail=userInfo.Email
     return render(request, 'profileupdate.html',{'id':id,'userFullName':userFullName,'userEmail':userEmail})
-    
+   
 def feedback(request):
     if(request.method=="POST"):
         name=request.POST.get("name")
@@ -98,7 +96,7 @@ def feedback(request):
         phone=request.POST.get("phone")
         message=request.POST.get("message")
         Feedback(Name=name,Email=email,Phone=phone,Message=message).save()
-        return render(request, 'homepage.html')
+        return redirect('homepage')
     else:
         return render(request, 'feedback.html')
 
@@ -117,14 +115,14 @@ def bookpage(request,corp,level,page):
             cr=CStory.objects.get(Level=level,Page=page)
             storyName='The C Cipher'
         except CStory.DoesNotExist:
-            redirectpage="/"+corp+"level"
+            redirectpage=corp+"level"
             return redirect(redirectpage)
     elif corp=='p':
         try:
             cr=PyStory.objects.get(Level=level,Page=page)
             storyName='The Python Chronicles'
         except PyStory.DoesNotExist:
-            redirectpage="/"+corp+"level"
+            redirectpage=corp+"level"
             return redirect(redirectpage)
     title=cr.Title
     data=cr.Content
@@ -147,7 +145,7 @@ def reglog(request):
                 return render(request, 'reglog.html', {'error_message': error_message})
             else:
                 Registration(FullName=fullname,Email=email,Password=password).save()
-                return render(request,'index.html')
+                return redirect('reglog')
         elif 'loginFormSubmit' in request.POST:
             email=request.POST.get("email")
             password=request.POST.get("password")
@@ -156,37 +154,9 @@ def reglog(request):
                 loginDetails=Registration.objects.get(Email=email,Password=password)
                 sessionID=loginDetails.id
                 request.session['my_session']=sessionID
-                return render(request,'homepage.html')
+                return redirect('homepage')
             else:
                 error_message = "Invalid credentials! Please try again."
                 return render(request, 'reglog.html', {'error_message': error_message})
     else:
         return render(request,'reglog.html')
-    
-def adminreglog(request):
-    if(request.method=="POST"):
-        if 'signupFormSubmit' in request.POST:
-            fullname=request.POST.get("fullname")
-            email=request.POST.get("email")
-            password=request.POST.get("password")
-            regobj=AdminRegistration.objects.filter(Email=email)
-            if regobj:
-                reg_error_message = "Email already in use! Please try another or login."
-                return render(request, 'adminreglog.html', {'reg_error_message': reg_error_message})
-            else:
-                AdminRegistration(FullName=fullname,Email=email,Password=password).save()
-                return render(request,'index.html')
-        elif 'loginFormSubmit' in request.POST:
-            email=request.POST.get("email")
-            password=request.POST.get("password")
-            logobj=AdminRegistration.objects.filter(Email=email,Password=password)
-            if logobj:
-                loginDetails=AdminRegistration.objects.get(Email=email,Password=password)
-                sessionID=loginDetails.id
-                request.session['my_session']=sessionID
-                return render(request,'adminhomepage.html')
-            else:
-                error_message = "Invalid credentials! Please try again."
-                return render(request, 'adminreglog.html', {'error_message': error_message})
-    else:
-        return render(request,'adminreglog.html')
