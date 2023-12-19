@@ -24,6 +24,22 @@ def deleteprofile(request,id):
     delid.delete()
     return render(request, 'adminhomepage.html')
 
+def adminlogin(request):
+    if request.method=="POST":
+        username=request.POST.get("username")
+        password=request.POST.get("password")
+        logobj=AdminRegistration.objects.filter(UserName=username,Password=password)
+        if logobj:
+            loginDetails=AdminRegistration.objects.get(UserName=username,Password=password)
+            sessionID=loginDetails.id
+            request.session['my_session']=sessionID
+            return redirect('adminhomepage')
+        else:
+            error_message = "Invalid credentials! Please try again."
+            return render(request, 'adminlogin.html', {'error_message': error_message})
+    else:
+        return render(request, 'adminlogin.html')
+
 def adminprofile(request):
     userProfile=Registration.objects.all()
     return render(request, 'adminprofile.html',{'data':userProfile})

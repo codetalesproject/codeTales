@@ -27,6 +27,7 @@ urlpatterns = [
     path('courses/', views.courses ,name='courses'),
     path('reglog/',views.reglog,name='reglog'),
     path('profile/',views.profile,name='profile'),
+    path('adminlogin/',views.adminlogin,name='adminlogin'),
     path('adminprofile/',views.adminprofile,name='adminprofile'),
     path('adminfeedback/',views.adminfeedback,name='adminfeedback'),
     path('deleteprofile/<int:id>',views.deleteprofile,name='deleteprofile'),
